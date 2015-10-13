@@ -1,4 +1,4 @@
-# browser-edit
+# Browser Edit
 
 PHP script which to edit a web pages directly in the browser.
 
