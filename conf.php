@@ -9,7 +9,7 @@ $bed_pass = 'bedit';
 $bed_path = '/home/www/public_html';
 
 // script folder
-$bed_fold = '/browser-edit/';
+$bed_fold = '/bedit/';
 
 // login
 $bed_auth = $bed_fold . 'auth.php';
@@ -39,4 +39,4 @@ $bed_lang['done'] = 'DONE';
 $bed_lang['save'] = 'Write changes to file and close editor. Make sure your mark-up is valid!';
 
 // make
-$bed_make = '20151012';
+$bed_make = '20151014';
