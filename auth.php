@@ -1,6 +1,6 @@
 <?php
 // load config
-require ('/home/www/public_html/browser-edit/conf.php');
+require ('/home/www/public_html/bedit/conf.php');
 
 // form submitted
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -12,7 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if ($bed_login == $bed_pass) {
 
         // pass file to editor
-        header('Location: ' . $bed_edit . '?f=' . $_SERVER['QUERY_STRING']);
+        header('Location: ' . $bed_edit . 
+               '?f=' . $_SERVER['QUERY_STRING']);
 
     // invalid login
     } else {
@@ -21,14 +22,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 }
 ?>
 <form action="" method="POST">
-    <input name="bed_login" 
-           id="bed_login" 
-           type="password" 
-           size="12" 
-           maxlength="32" 
-           title="<?php echo $bed_lang['pass']; ?>">
-    <input type="submit" 
-           value="<?php echo $bed_lang['ok']; ?>" 
-           title="<?php echo $bed_lang['post']; ?>">
+    <input name="bed_login" id="bed_login" 
+           size="12" maxlength="32" 
+           title="<?php echo $bed_lang['pass']; ?>" 
+           type="password">
+    <input value="<?php echo $bed_lang['ok']; ?>" 
+           title="<?php echo $bed_lang['post']; ?>" 
+           type="submit">
 </form>
 <?php echo $bed_file; ?>
