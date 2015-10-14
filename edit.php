@@ -12,19 +12,18 @@ if ((isset ($_GET['f']) && ($_GET['f']) != '')) {
 $bed_data = $bed_path . $bed_file;
 
 // uncomment if you have permission issues
-// unix specific, hence @chmod to suppress errors
 //@chmod($bed_data, 0666);
 
 // get existing contents
 $bed_body = file_get_contents($bed_data);
 
-// replace </textarea> with <\/textarea> to prevent premature end of script
+// replace </textarea> with <\/textarea> to prevent premature end
 $bed_body = str_replace('</textarea>', '<\/textarea>', $bed_body);
 
 // form submitted
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-    // store contents, stripslashes() to keep in-page source codes intact
+    // store contents, stripslashes() to keep in-page sources intact
     $bed_text = stripslashes($_POST['bed_text']);
 
     // reset <\/textarea> back to </textarea>
@@ -44,8 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <html lang="en-GB">
     <head>
         <title><?php echo $bed_lang['name']; ?></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta http-equiv="Content-Style-Type" content="text/css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <style type="text/css">
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -169,18 +167,37 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <form action="" method="post" id="bed_form">
             <div id="bed_head">
                 <span id="bed_logo">
-                    <label for="bed_text">&ni;&isin; <?php echo $bed_lang['name']; ?></label>
-                    <span id="bed_info"><?php echo $bed_make; ?><br><a href="http://phclaus.eu.org/?bed" title="<?php echo $bed_lang['home']; ?>"><?php echo $bed_lang['home']; ?></a></span>
+                    <label for="bed_text">
+                        &ni;&isin; <?php echo $bed_lang['name']; ?>
+                    </label>
+                    <span id="bed_info">
+                        <?php echo $bed_make; ?><br>
+                        <a href="http://phclaus.eu.org/?bed" 
+                           title="<?php echo $bed_lang['home']; ?>">
+                           <?php echo $bed_lang['home']; ?></a>
+                    </span>
                 </span>
-                <span id="bed_file"><?php echo $bed_lang['file']; ?>: <?php echo $bed_file; ?></span>
+                <span id="bed_file">
+                    <?php echo $bed_lang['file']; ?>: 
+                    <?php echo $bed_file; ?>
+                </span>
             </div>
             <div id="bed_area">
-                <textarea rows="24" cols="80" name="bed_text" id="bed_text" title="<?php echo $bed_lang['edit']; ?>"><?php echo "\n" . $bed_body . "\n"; ?>
+                <textarea name="bed_text" id="bed_text" 
+                          rows="24" cols="80" 
+                          title="<?php echo $bed_lang['edit']; ?>">
+                          <?php echo "\n" . $bed_body . "\n"; ?>
                 </textarea>
             </div>
             <div id="bed_foot">
-                <input type="reset" value="<?php echo $bed_lang['undo']; ?>" title="<?php echo $bed_lang['void']; ?>" class="bed_edit">
-                <input type="submit" value="<?php echo $bed_lang['done']; ?>" title="<?php echo $bed_lang['save']; ?>" class="bed_edit">
+                <input type="reset" 
+                       value="<?php echo $bed_lang['undo']; ?>" 
+                       title="<?php echo $bed_lang['void']; ?>" 
+                       class="bed_edit">
+                <input type="submit" 
+                       value="<?php echo $bed_lang['done']; ?>" 
+                       title="<?php echo $bed_lang['save']; ?>" 
+                       class="bed_edit">
             </div>
         </form>
     </body>
