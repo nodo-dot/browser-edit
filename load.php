@@ -1,6 +1,6 @@
 <?php
 // load config
-require ('/home/www/public_html/browser-edit/conf.php');
+require ('/home/www/public_html/bedit/conf.php');
 
 // link file
 if (isset ($_GET[$bed_load])) {
