@@ -172,7 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     </label>
                     <span id="bed_info">
                         <?php echo $bed_make; ?><br>
-                        <a href="http://phclaus.eu.org/?bed" 
+                        <a href="http://phclaus.eu.org/php-scripts/browser-edit" 
                            title="<?php echo $bed_lang['home']; ?>">
                            <?php echo $bed_lang['home']; ?></a>
                     </span>
