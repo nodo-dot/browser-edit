@@ -1,6 +1,6 @@
 <?php
 // load config
-require ('/home/www/public_html/bedit/conf.php');
+include ($_SERVER['DOCUMENT_ROOT'] . '/bedit/conf.php');
 
 // link file
 if (isset ($_GET[$bed_load])) {
