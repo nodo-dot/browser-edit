@@ -6,7 +6,7 @@ $bed_load = 'bedit';
 $bed_pass = 'bedit';
 
 // document root
-$bed_path = '/home/www/public_html';
+$bed_path = $_SERVER['DOCUMENT_ROOT'];
 
 // script folder
 $bed_fold = '/bedit/';
@@ -32,11 +32,11 @@ $bed_lang['auth'] = 'Not authorised';
 
 // edit
 $bed_lang['file'] = 'File';
-$bed_lang['edit'] = 'Edit content. Make sure your mark-up is valid!';
+$bed_lang['edit'] = 'Edit content.';
 $bed_lang['undo'] = 'UNDO';
 $bed_lang['void'] = 'Reset all changes';
 $bed_lang['done'] = 'DONE';
-$bed_lang['save'] = 'Write changes to file and close editor. Make sure your mark-up is valid!';
+$bed_lang['save'] = 'Write changes to file and close editor.';
 
 // make
-$bed_make = '20151014';
+$bed_make = '20160210';
