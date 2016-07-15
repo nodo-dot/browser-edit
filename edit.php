@@ -8,13 +8,8 @@ if ((isset ($_GET['f']) && ($_GET['f']) != '')) {
   $bed_file = str_replace('?' . $bed_load, '', $bed_file);
 }
 
-// create file handle
+// create file handle and get existing content
 $bed_data = $bed_path . $bed_file;
-
-// uncomment if you have permission issues
-// @chmod($bed_data, 0666);
-
-// get existing contents
 $bed_body = file_get_contents($bed_data);
 
 // replace </textarea> with <\/textarea> to prevent premature end of script
@@ -23,19 +18,14 @@ $bed_body = str_replace('</textarea>', '<\/textarea>', $bed_body);
 // form submitted
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
-  // store contents, stripslashes() to keep in-page source codes intact
+  // store content, stripslashes() to keep inline source code intact
   $bed_text = stripslashes($_POST['bed_text']);
 
   // reset <\/textarea> back to </textarea>
   $bed_text = str_replace('<\/textarea>', '</textarea>', $bed_text);
 
-  // write contents back to file
+  // write content back to file and close editor
   file_put_contents($bed_data, $bed_text);
-
-  // uncomment if you have permission issues
-  // @chmod($bed_data, 0644);
-
-  // close editor
   header('Location: ' . $bed_file);
   exit;
 }
@@ -43,14 +33,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en-GB">
   <head>
-    <title><?php echo $bed_lang['name']; ?></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta http-equiv="Content-Style-Type" content="text/css">
+    <title>Browser Edit</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <style type="text/css">
     body {
       background-color: #009;
       color: #fff;
       font-family: sans-serif;
+      font-size: 95%;
       margin: 0;
       padding: 0;
       position: absolute;
@@ -72,30 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       padding: 3px 6px 3px 6px;
     }
 
-    #bed_logo {
-      float: left;
-      font-weight: bold;
-      height: 24px;
-    }
-
-    #bed_info {
-      background-color: #099;
-      color: #ff0;
-      position: absolute;
-      top: 24px;
-      left: 0;
-      font-weight: normal;
-      text-align: right;
-      margin: 0;
-      padding: 6px 6px 6px 28px;
-      z-index: -1000;
-    }
-
-    #bed_logo:hover #bed_info {
-      height: auto;
-      z-index: 1000;
-    }
-
     a {
       background-color: transparent;
       color: inherit;
@@ -108,7 +74,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 
     #bed_form {
-      text-align: center;
       margin: 0;
       padding: 0;
     }
@@ -157,6 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     #bed_foot {
       background-color: #099;
       color: #ff0;
+      text-align: center;
       position: absolute;
       right: 0;
       bottom: 0;
@@ -164,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       padding: 1px 3px 1px 3px;
     }
 
-    .bed_edit {
+    .bed_push {
       background-color: #099;
       color: #ff0;
       font-size: 75%;
@@ -174,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       padding: 1px 3px 1px 3px;
     }
 
-    .bed_edit:hover {
+    .bed_push:hover {
       background-color: #066;
       color: #000;
       border: 1px inset #099;
@@ -184,18 +150,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   <body>
     <form action="" method="POST" id="bed_form">
       <div id="bed_head">
-        <span id="bed_logo">
-          <label for="bed_text">&ni;&isin; <?php echo $bed_lang['name']; ?></label>
-          <span id="bed_info"><?php echo $bed_make; ?><br><a href="http://phclaus.eu.org/php-scripts/browser-edit" title="<?php echo $bed_lang['home']; ?>"><?php echo $bed_lang['home']; ?></a></span>
-        </span>
-        <span id="bed_file"><?php echo $bed_lang['file']; ?>: <?php echo $bed_file; ?></span>
+        <strong><a href="http://phclaus.eu.org/php-scripts/browser-edit" title="Browser Edit v<?php echo $bed_make; ?> homepage">&ni;&isin; Browser Edit</a></strong>
+        <span id="bed_file"><?php echo $bed_file; ?></span>
       </div>
       <div id="bed_area">
-        <textarea rows="24" cols="80" name="bed_text" id="bed_text" title="<?php echo $bed_lang['edit']; ?>"><?php echo "\n" . $bed_body; ?></textarea>
+        <textarea rows="24" cols="80" name="bed_text" id="bed_text"><?php echo "\n" . $bed_body; ?></textarea>
       </div>
       <div id="bed_foot">
-        <input type="reset" value="<?php echo $bed_lang['undo']; ?>" title="<?php echo $bed_lang['void']; ?>" class="bed_edit">
-        <input type="submit" value="<?php echo $bed_lang['done']; ?>" title="<?php echo $bed_lang['save']; ?>" class="bed_edit">
+        <input type="reset" value="Undo" title="Undo all changes" class="bed_push">
+        <input type="submit" value="Save" title="Save file and exit" class="bed_push">
       </div>
     </form>
   </body>
