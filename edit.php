@@ -29,7 +29,7 @@ if (isset ($_POST['bed_post'])) {
       <div id="bed_head">
         <span id="bed_logo">
           <label for="bed_text">&ni;&isin; Browser Edit</label>
-          <span id="bed_info"><?php echo $bed_make; ?><br><a href="http://phclaus.eu.org/php-scripts/browser-edit/" title="Visit Browser Edit homepage">www</a></span>
+          <span id="bed_info"><?php echo $bed_make; ?><br><a href="http://phclaus.com/php-scripts/browser-edit/" title="Visit Browser Edit homepage">www</a></span>
         </span>
         <span id="bed_file">File: <?php echo $bed_file; ?></span>
       </div>
