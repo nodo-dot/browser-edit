@@ -4,7 +4,7 @@
  * login query
  * login password
  */
-$bed_fold = "/path/to/bed/";
+$bed_fold = "/site/bed/";
 $bed_load = "YOUR_ACCESS_TOKEN";
 $bed_pass = "YOUR_ACCESS_PASSWORD";
 
