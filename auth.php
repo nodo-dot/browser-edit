@@ -1,6 +1,6 @@
 <?php
 //** load config
-include ($_SERVER['DOCUMENT_ROOT'] . "/path/to/bed/conf.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/site/bed/conf.php");
 
 //** form posted
 if (isset ($_POST['bed_post'])) {
