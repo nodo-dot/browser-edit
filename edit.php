@@ -8,7 +8,7 @@ if (isset ($_GET['f'] && $_GET['f']) !== "") {
   $bed_file = str_replace("?" . $bed_load, "", $bed_file);
 }
 
-//** link file
+//** link file and prepare body
 $bed_data = $bed_path . $bed_file;
 $bed_body = file_get_contents($bed_data);
 $bed_body = str_replace("</textarea>", "<\/textarea>", $bed_body);
@@ -45,7 +45,7 @@ if (isset ($_POST['bed_post'])) {
       </div>
       <div id=bed_foot>
         <input value=Undo title="Undo changes" class=bed_edit type=reset />
-        <input value=Save title="Save changes" class=bed_edit name=bed_post type="reset" />
+        <input value=Save title="Save changes" class=bed_edit name=bed_post type=reset />
       </div>
     </form>
   </body>
