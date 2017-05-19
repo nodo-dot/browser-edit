@@ -19,6 +19,6 @@ if (isset ($_POST['bed_post'])) {
   <div>
     <label for=bed_pass>Password</label>
     <input name=bed_pass id=bed_pass size=12 maxlength=32 title="Please enter your password" type=password />
-    <input name=bed_post value=Login title="Click here to login" type=submit/>
+    <input name=bed_post value=Login title="Click here to login" type=submit />
   </div>
 </form>
