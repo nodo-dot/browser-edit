@@ -4,7 +4,7 @@ include ('./conf.php');
 
 //** missing or empty file token
 if (isset ($_GET['f'] && $_GET['f']) !== "") {
-  $bed_file = $_GET['f'];
+  $bed_file = htmlentities($_GET['f'], ENT_QUOTES, "UTF-8");
   $bed_file = str_replace("?" . $bed_load, "", $bed_file);
 }
 
