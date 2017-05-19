@@ -17,4 +17,4 @@ $bed_pass = "YOUR_ACCESS_PASSWORD";
 $bed_path = $_SERVER['DOCUMENT_ROOT'];
 $bed_auth = $bed_fold . "auth.php";
 $bed_edit = $bed_fold . "edit.php";
-$bed_make = 20170515;
+$bed_make = 20170519;
