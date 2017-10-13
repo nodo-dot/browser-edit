@@ -1,6 +1,6 @@
 <?php
 //** load config
-include ($_SERVER['DOCUMENT_ROOT'] . "/site/bed/conf.php");
+include ($_SERVER['DOCUMENT_ROOT'] . "/bedit/conf.php");
 
 //** form posted
 if (isset ($_POST['bed_post'])) {
@@ -15,10 +15,10 @@ if (isset ($_POST['bed_post'])) {
   }
 }
 ?>
-<form action="#" method=POST accept-charset=UTF-8>
+<form action="#" method=POST accept-charset="UTF-8">
   <div>
     <label for=bed_pass>Password</label>
-    <input name=bed_pass id=bed_pass size=12 maxlength=32 title="Please enter your password" type=password />
+    <input name=bed_pass id=bed_pass size=12 maxlength=32 title="Type her to enter your password" type=password />
     <input name=bed_post value=Login title="Click here to login" type=submit />
   </div>
 </form>
