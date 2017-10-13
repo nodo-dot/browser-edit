@@ -1,5 +1,5 @@
 <?php include ('./load.php'); ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html>
   <head>
     <title>Browser Edit Test Page</title>
@@ -7,7 +7,7 @@
   <body>
     <h1>Browser Edit Test Page</h1>
     <p>This is the Browser Edit test page.</p>
-    <p>The default token is <kbd>magic</kbd> and the password is <kbd>secret</kbd>.</p>
-    <p><a href="?magic" title="Open editor">Edit</a></p>
+    <p>The default token is <code>magic</code> and the password is <code>secret</code>.</p>
+    <p><a href="?bedit" title="Click here to open the editor screen">Edit</a></p>
   </body>
 </html>
