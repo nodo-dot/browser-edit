@@ -1,12 +1,12 @@
 <?php
 /*
  * script folder
- * login query
- * login password
+ * access token
+ * editor password
  */
-$bed_fold = "/site/bed/";
-$bed_load = "YOUR_ACCESS_TOKEN";
-$bed_pass = "YOUR_ACCESS_PASSWORD";
+$bed_fold = "/bedit/";
+$bed_load = "bedit";
+$bed_pass = "bedit";
 
 /*
  * document root path
@@ -17,4 +17,4 @@ $bed_pass = "YOUR_ACCESS_PASSWORD";
 $bed_path = $_SERVER['DOCUMENT_ROOT'];
 $bed_auth = $bed_fold . "auth.php";
 $bed_edit = $bed_fold . "edit.php";
-$bed_make = 20170519;
+$bed_make = 20171013;
