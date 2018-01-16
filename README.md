@@ -7,3 +7,5 @@
 - Add a reference to `load.php` at the top of every file for which you want to enable editing. Refer to the demo `index.php` for an example.
 
 Append `?ACCESS_TOKEN` as configured in `conf.php => $bed_load` to the URL to edit the given file.
+
+Follow this link for a brief [demo](http://phclaus.com/demo/browser-edit/)
