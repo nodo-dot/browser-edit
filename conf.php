@@ -27,7 +27,7 @@
  * Editor password
  */
 $bed_path = $_SERVER['DOCUMENT_ROOT'];
-$bed_fold = "/demo/browser-edit/";
+$bed_fold = "/browser-edit/";
 $bed_load = "edit";
 $bed_pass = "edit";
 
