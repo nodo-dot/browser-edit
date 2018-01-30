@@ -1,8 +1,7 @@
 @charset "UTF-8";
 
 body {
-    font-family: sans-serif;
-    font-size: 95%;
+    font-family: monospace;
     margin: 0;
     padding: 0;
 }
@@ -13,12 +12,13 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: #ccc;
-    color: #000;
+    background-color: #333;
+    color: #999;
+    text-shadow: 1px 1px 1px #000;
 }
 
 #bed_head {
-    font-size: 95%;
+    font-size: 105%;
     padding: 4px 10px 4px 26px;
     font-weight: bold;
 }
@@ -30,13 +30,15 @@ body {
 
 #bed_tree {
     position: absolute;
-    top: 24px;
-    bottom: 36px;
+    top: 26px;
+    bottom: 40px;
     left: 0;
     min-width: 40%;
-    max-width: 95%;
+    max-width: 90%;
     margin: 0 4px;
     padding: 0 4px;
+    -font-size: 95%;
+    text-align: left;
 }
 
 #bed_list {
@@ -45,13 +47,11 @@ body {
     bottom: 0;
     left: 0;
     height: 100%;
-    font-size: 85%;
-    text-align: left;
     padding: 8px 16px 0 0;
-    background-color: #ccc;
-    color: #000;
     overflow: auto;
     z-index: -1000;
+    background-color: #333;
+    color: #666;
 }
 
 #bed_tree:hover #bed_list {
@@ -62,7 +62,7 @@ body {
     position: absolute;
     top: 24px;
     right: 16px;
-    bottom: 40px;
+    bottom: 42px;
     left: 16px;
     margin: 0 4px;
     padding: 0 4px;
@@ -72,7 +72,6 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    font-family: monospace;
     font-size: 105%;
     padding: 4px 8px;
     background-color: #000;
@@ -84,63 +83,95 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
+    margin: 0;
     padding: 2px 4px 2px 4px;
     font-size: 85%;
     text-align: center;
 }
 
 input {
-    background-color: #ccc;
-    color: #000;
+    background-color: inherit;
+    color: #666;
     font-weight: bold;
-    border: 1px outset #999;
+    border: 1px outset #000;
     margin: 2px 4px;
-    padding: 2px 4px;
+    padding: 2px 6px;
+    text-shadow: 1px 1px 1px #000;
 }
 
 input:hover {
-    background-color: #fff;
+    background-color: #666;
     color: #000;
-    border: 1px inset #999;
+    border: 1px inset #000;
+    text-shadow: 1px 1px 1px #999;
+}
+
+textarea {
+    border: 1px solid #000;
 }
 
 ul {
     margin: 0 8px;
-    padding: 0 8px 0 8px;
+    padding: 0 8px;
 }
 
 li {
-    padding: 0 4px 4px 4px;
+    padding: 2px 4px;
 }
 
 a:link, a:visited {
-    background-color: transparent;
-    color: #000;
+    background-color: #333;
+    color: #999;
     text-decoration: none;
-    padding: 4px;
+    padding: 2px 4px;
+    text-shadow: 1px 1px 1px #000;
 }
 
 a:active, a:focus, a:hover {
-    background-color: #fff;
+    background-color: #999;
     color: #000;
+    text-shadow: 1px 1px 1px #ccc;
 }
 
 #bed_logo a {
     background-color: transparent;
-    color: #000;
+    color: inherit;
+    text-shadow: 1px 1px 1px #000;
     padding: 0;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
     body {
-        font-size: 85%;
+        font-size: 105%;
     }
 
     #bed_head {
-        bottom: 48px;
+        bottom: 60px;
     }
 
-    #bed_tree, #bed_area {
+    #bed_tree {
+        top: 50px;
+        bottom: 66px;
+    }
+
+    #bed_area {
         top: 48px;
+        bottom: 68px;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    body {
+        font-size: 105%;
+    }
+
+    #bed_tree {
+        top: 60px;
+        bottom: 92px;
+    }
+
+    #bed_area {
+        top: 58px;
+        bottom: 94px;
     }
 }
