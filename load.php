@@ -18,6 +18,13 @@
 session_start();
 require './conf.php';
 
+//** Check empty tree
+if ($bed_tree === "") {
+    echo "<p>Warning: Found empty tree!</p>\n" .
+         "<p>Please check your settings.</p>\n";
+    exit;
+}
+
 //** Form posted
 if (isset($_POST['bed_post'])) {
     $bed_login = $_POST['bed_pass'];

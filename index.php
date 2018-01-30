@@ -10,7 +10,7 @@
  * @link      https://github.com/phhpro/browser-edit
  *
  *
- * Test page
+ * Demo index
  */
 ?>
 <!DOCTYPE html>

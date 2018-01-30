@@ -103,10 +103,15 @@ if (isset($_SESSION[$bed_name]) && $_SESSION[$bed_name] === $bed_auth) {
          "                <div id=bed_list>\n" .
          "                    <ul>\n";
 
-    //** Prepare iterator
-    $bed_iter = new RecursiveIteratorIterator(
-        new RecursiveDirectoryIterator($bed_path . $bed_tree)
-    );
+    //** Check empty tree and prepare iterator
+    if ($bed_tree !== "") {
+        $bed_iter = new RecursiveIteratorIterator(
+            new RecursiveDirectoryIterator($bed_path . $bed_tree)
+        );
+    } else {
+        echo "                    <li>Warning: Found empty tree!</li>\n" .
+             "                    <li>Please check your settings.</li>\n";
+    }
 
     //** Link items
     $bed_list = array();
