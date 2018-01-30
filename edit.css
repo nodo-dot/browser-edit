@@ -1,18 +1,10 @@
+@charset "UTF-8";
+
 body {
     font-family: sans-serif;
+    font-size: 95%;
     margin: 0;
     padding: 0;
-}
-
-a {
-    background-color: transparent;
-    color: #009;
-    text-decoration: none;
-}
-
-a:hover {
-    background-color: transparent;
-    color: #900;
 }
 
 #bed_form {
@@ -23,76 +15,68 @@ a:hover {
     left: 0;
     background-color: #ccc;
     color: #000;
-    text-align: center;
 }
 
 #bed_head {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 24px;
-    left: 0;
-    font-size: 85%;
-    padding: 3px 6px 3px 6px;
-}
-
-#bed_logo {
-    float: left;
+    font-size: 95%;
+    padding: 4px 10px 4px 26px;
     font-weight: bold;
-    height: 24px;
-}
-
-#bed_info {
-    position: absolute;
-    top: 24px;
-    left: 0;
-    background-color: #ccc;
-    color: #000;
-    font-weight: normal;
-    text-align: left;
-    max-width: 25%;
-    margin: 0;
-    padding: 6px;
-    z-index: -1000;
-}
-
-#bed_logo:hover #bed_info {
-    height: auto;
-    z-index: 1000;
 }
 
 #bed_file {
     float: right;
-    margin-bottom: 3px;
-    padding-right: 6px;
+    font-weight: normal;
+}
+
+#bed_tree {
+    position: absolute;
+    top: 24px;
+    bottom: 36px;
+    left: 0;
+    min-width: 40%;
+    max-width: 95%;
+    margin: 0 4px;
+    padding: 0 4px;
+}
+
+#bed_list {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    font-size: 85%;
+    text-align: left;
+    padding: 8px 16px 0 0;
+    background-color: #ccc;
+    color: #000;
+    overflow: auto;
+    z-index: -1000;
+}
+
+#bed_tree:hover #bed_list {
+    z-index: 1000;
 }
 
 #bed_area {
     position: absolute;
     top: 24px;
-    right: 0;
-    bottom: 36px;
-    left: 0;
-    width: 99%;
-    margin: 0;
-    padding: 0;
+    right: 16px;
+    bottom: 40px;
+    left: 16px;
+    margin: 0 4px;
+    padding: 0 4px;
 }
 
 #bed_text {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 99%;
+    width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: #009;
-    color: #fff;
     font-family: monospace;
-    font-size: 100%;
-    margin: 0;
-    padding: 3px 6px 3px 6px;
+    font-size: 105%;
+    padding: 4px 8px;
+    background-color: #000;
+    color: #0f0;
 }
 
 #bed_foot {
@@ -100,21 +84,63 @@ a:hover {
     right: 0;
     bottom: 0;
     left: 0;
-    padding: 1px 2px 1px 2px;
+    padding: 2px 4px 2px 4px;
+    font-size: 85%;
+    text-align: center;
 }
 
-.bed_edit {
+input {
     background-color: #ccc;
     color: #000;
-    font-size: 75%;
     font-weight: bold;
     border: 1px outset #999;
-    margin: -3px 3px 2px 3px;
-    padding: 1px 3px 1px 3px;
+    margin: 2px 4px;
+    padding: 2px 4px;
 }
 
-.bed_edit:hover {
+input:hover {
     background-color: #fff;
     color: #000;
     border: 1px inset #999;
+}
+
+ul {
+    margin: 0 8px;
+    padding: 0 8px 0 8px;
+}
+
+li {
+    padding: 0 4px 4px 4px;
+}
+
+a:link, a:visited {
+    background-color: transparent;
+    color: #000;
+    text-decoration: none;
+    padding: 4px;
+}
+
+a:active, a:focus, a:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+#bed_logo a {
+    background-color: transparent;
+    color: #000;
+    padding: 0;
+}
+
+@media screen and (max-width: 500px) {
+    body {
+        font-size: 85%;
+    }
+
+    #bed_head {
+        bottom: 48px;
+    }
+
+    #bed_tree, #bed_area {
+        top: 48px;
+    }
 }
