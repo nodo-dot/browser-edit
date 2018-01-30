@@ -66,8 +66,45 @@ if (isset($_SESSION[$bed_name]) && $_SESSION[$bed_name] === $bed_auth) {
         $bed_text = stripslashes($_POST['bed_text']);
         $bed_text = str_replace("<\/textarea>", "</textarea>", $bed_text);
         file_put_contents($bed_data, $bed_text);
-        header("Location: edit.php?f=$bed_fget");
+        header("Location: ?f=$bed_fget");
         exit;
+    }
+
+    //** Create new file
+    if (isset($_POST['bed_fnew'])) {
+        $bed_fsrc = $_POST['bed_fsrc'];
+
+        //** Check empty file name
+        if ($bed_fsrc !== "") {
+
+            //** Link path, directory and filename
+            $bed_fnew = $bed_path . $bed_tree . $bed_fsrc;
+            $bed_fdir = pathinfo($bed_fnew, PATHINFO_DIRNAME);
+            $bed_fnam = pathinfo($bed_fnew, PATHINFO_BASENAME);
+
+            //** Create folder if missing
+            if (!file_exists($bed_fdir)) {
+                mkdir($bed_fdir, 0777, true);
+            }
+
+            //** Create file if missing
+            if (!file_exists($bed_fnam)) {
+                fopen($bed_fnew, 'w');
+                fwrite($bed_fnew, "Ready...");
+                fclose($bed_new);
+            }
+
+            //** Load new file into editor
+            $bed_fnew = str_replace($bed_path, "", $bed_fnew);
+            header("Location: ?f=$bed_fnew");
+            exit;
+        }
+    }
+
+    //** Delete file
+    if (isset($_POST['bed_fdel'])) {
+        $bed_file = pathinfo($bed_fget, PATHINFO_BASENAME);
+        unlink($bed_path . $bed_tree . $bed_file);
     }
 
     //** Quit editor
@@ -119,15 +156,16 @@ if (isset($_SESSION[$bed_name]) && $_SESSION[$bed_name] === $bed_auth) {
     //** Parse tree
     foreach ($bed_iter as $bed_item) {
 
-        //** Skip directories
-        if ($bed_item->isDir()) {
-            continue;
-        }
-
         //** Build item link
         $bed_list[] = $bed_item->getPathname();
         $bed_link = str_replace($bed_path, "", $bed_item);
 
+        //** Item is directory
+        if ($bed_item->isDir()) {
+            continue;
+        }
+
+        //** Item is file
         echo '                        <li><a href="' . $bed_fold .
              'edit.php?f=' . $bed_link . '" title="Click here to edit ' .
              $bed_link . '">' . $bed_link . "</a></li>\n";
@@ -142,13 +180,26 @@ if (isset($_SESSION[$bed_name]) && $_SESSION[$bed_name] === $bed_auth) {
          "            </div>\n" .
          "            <div id=bed_area>\n" .
          '                <textarea id=bed_text name=bed_text ' .
-         "rows=24 cols=80>\n$bed_body" .
-         "                </textarea>\n" .
+         "rows=24 cols=80>$bed_body</textarea>\n" .
          "            </div>\n" .
          "            <div id=bed_foot>\n" .
          '                <input type=submit value="Quit" ' .
          'title="Click here to quit the editor" ' .
          "id=bed_quit name=bed_quit />\n" .
+         '                <input type=submit value="Delete" ' .
+         'title="Click here to delete this file. Its contents will ' .
+         'remain in memory for the time being, so if you deleted ' .
+         'the file accidentally, you can still press the Save ' .
+         'button to restore it." ' .
+         "id=bed_fdel name=bed_fdel />\n" .
+         '                <input ' .
+         'title="Type here to enter the name of the new file. You ' .
+         'can add a path (without leading /, e.g. foo/bar/baz.txt) ' .
+         'to create the file in a different location." ' .
+         "name=bed_fsrc id=bed_fsrc/>\n" .
+         '                <input type=submit value="New" ' .
+         'title="Click here to create a new file" ' .
+         "id=bed_fnew name=bed_fnew />\n" .
          '                <input type=submit value="Save" ' .
          'title="Click here to save all changes" ' .
          "id=bed_save name=bed_save />\n" .
