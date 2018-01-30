@@ -90,8 +90,6 @@ if (isset($_SESSION[$bed_name]) && $_SESSION[$bed_name] === $bed_auth) {
             //** Create file if missing
             if (!file_exists($bed_fnam)) {
                 fopen($bed_fnew, 'w');
-                fwrite($bed_fnew, "Ready...");
-                fclose($bed_new);
             }
 
             //** Load new file into editor
