@@ -32,10 +32,12 @@ if (isset($_POST['bed_post'])) {
     //** Check password
     if ($bed_login === $bed_pass) {
         $_SESSION[$bed_name] = $bed_auth;
-        header("Location: " . $bed_edit . "?f=" . $_SERVER['QUERY_STRING']);
+        header("Location: " . $bed_edit . "?f=" .
+               $_SERVER['QUERY_STRING'] . "#EDIT");
         exit;
     } else {
-        echo "<p>Invalid login!</p>\n";
+        header("Location: " . $bed_href . "#INVALID_LOGIN");
+        exit;
     }
 }
 

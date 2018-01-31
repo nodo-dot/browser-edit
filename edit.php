@@ -42,8 +42,6 @@ if (isset($_SESSION[$bed_name]) && $_SESSION[$bed_name] === $bed_auth) {
         $bed_fget = $_GET['f'];
         $bed_file = htmlentities($bed_fget, ENT_QUOTES, "UTF-8");
         $bed_file = str_replace("?" . $bed_load, "", $bed_file);
-    } else {
-        $bed_file = "";
     }
 
     //** Check if tree is set
@@ -51,22 +49,29 @@ if (isset($_SESSION[$bed_name]) && $_SESSION[$bed_name] === $bed_auth) {
         //** Match file against tree to prevent unauthorised access
         if (strpos($bed_file, $bed_tree) === false) {
             session_destroy();
-            header("Location: ./");
+            header("Location: " . $bed_href . "#UNAUTHORISED");
             exit;
         }
     }
 
-    //** Link file object and prepare body
+    /**
+     * Link file object and prepare body
+     *
+     * Because the script uses a textarea element to display the file
+     * contents, any closing textarea tags in the sources need to be
+     * masked first to prevent a premature end of the script. None of
+     * this is visible to the user and fully restored when saving.
+     */
     $bed_data = $bed_path . $bed_file;
     $bed_body = file_get_contents($bed_data);
     $bed_body = str_replace("</textarea>", "<\/textarea>", $bed_body);
 
-    //** Save changes
+    //** Save file
     if (isset($_POST['bed_save'])) {
         $bed_text = stripslashes($_POST['bed_text']);
         $bed_text = str_replace("<\/textarea>", "</textarea>", $bed_text);
         file_put_contents($bed_data, $bed_text);
-        header("Location: ?f=$bed_fget");
+        header("Location: ?f=" . $bed_fget . "#SAVED");
         exit;
     }
 
@@ -74,7 +79,7 @@ if (isset($_SESSION[$bed_name]) && $_SESSION[$bed_name] === $bed_auth) {
     if (isset($_POST['bed_fnew'])) {
         $bed_fsrc = $_POST['bed_fsrc'];
 
-        //** Check empty file name
+        //** Check missing filename
         if ($bed_fsrc !== "") {
 
             //** Link path, directory and filename
@@ -82,33 +87,37 @@ if (isset($_SESSION[$bed_name]) && $_SESSION[$bed_name] === $bed_auth) {
             $bed_fdir = pathinfo($bed_fnew, PATHINFO_DIRNAME);
             $bed_fnam = pathinfo($bed_fnew, PATHINFO_BASENAME);
 
-            //** Create folder if missing
+            //** Create folders if required
             if (!file_exists($bed_fdir)) {
                 mkdir($bed_fdir, 0777, true);
             }
 
-            //** Create file if missing
+            //** Create file
             if (!file_exists($bed_fnam)) {
                 fopen($bed_fnew, 'w');
             }
 
             //** Load new file into editor
             $bed_fnew = str_replace($bed_path, "", $bed_fnew);
-            header("Location: ?f=$bed_fnew");
-            exit;
+            header("Location: ?f=" . $bed_fnew . "#CREATED");
+        } else {
+            header("Location: ?f=" . $bed_fget . "#MISSING_FILENAME");
         }
+
+        exit;
     }
 
     //** Delete file
     if (isset($_POST['bed_fdel'])) {
         $bed_file = pathinfo($bed_fget, PATHINFO_BASENAME);
         unlink($bed_path . $bed_tree . $bed_file);
+        $bed_stat = "FILE DELETED -- Press <code>Save</code> to restore\n";
     }
 
     //** Quit editor
     if (isset($_POST['bed_quit'])) {
         session_destroy();
-        header("Location: $bed_fget");
+        header("Location: " . $bed_fget . "#LOGOUT");
         exit;
     }
 
@@ -125,13 +134,14 @@ if (isset($_SESSION[$bed_name]) && $_SESSION[$bed_name] === $bed_auth) {
          'href="' . $bed_fold . 'edit.css" type="text/css"/>' . "\n" .
          "    </head>\n" .
          "    <body>\n" .
-         '        <form action="#OK" method=POST id=bed_form ' .
+         '        <form action="#" method=POST id=bed_form ' .
          'accept-charset="UTF-8">' . "\n" .
          "            <div id=bed_head>\n" .
          '                <span id=bed_logo><a href="' .
          'https://github.com/phhpro/browser-edit" ' .
-         'title="Click here to get a free copy of this script">' .
-         "&ni;&isin; PHP Browser Edit v$bed_make</a></span>\n" .
+         'title="Click here to get a free copy of this script.">' .
+         "&#x220B;&#x2208; PHP Browser Edit v$bed_make</a></span>\n" .
+         "                <span id=bed_stat>$bed_stat</span>\n" .
          "                <span id=bed_file>File: $bed_file</span>\n" .
          "            </div>\n" .
          "            <div id=bed_tree>\n" .
@@ -178,11 +188,19 @@ if (isset($_SESSION[$bed_name]) && $_SESSION[$bed_name] === $bed_auth) {
          "            </div>\n" .
          "            <div id=bed_area>\n" .
          '                <textarea id=bed_text name=bed_text ' .
-         "rows=24 cols=80>$bed_body</textarea>\n" .
+         "rows=24 cols=80>\n$bed_body\n</textarea>\n" .
+         "            </div>\n" .
+         "            <div id=bed_vsrc>\n" .
+         "                <div id=bed_vweb>\n" .
+         '                    <object data="' . $bed_file .
+         '"></object>' . "\n" .
+         "                </div>\n" .
          "            </div>\n" .
          "            <div id=bed_foot>\n" .
+         '                <span id=bed_slft title="Hover left ' .
+         'margin to view the file tree.">TREE</span>' . "\n" .
          '                <input type=submit value="Quit" ' .
-         'title="Click here to quit the editor" ' .
+         'title="Click here to quit the editor." ' .
          "id=bed_quit name=bed_quit />\n" .
          '                <input type=submit value="Delete" ' .
          'title="Click here to delete this file. Its contents will ' .
@@ -194,13 +212,16 @@ if (isset($_SESSION[$bed_name]) && $_SESSION[$bed_name] === $bed_auth) {
          'title="Type here to enter the name of the new file. You ' .
          'can add a path (without leading /, e.g. foo/bar/baz.txt) ' .
          'to create the file in a different location." ' .
-         "name=bed_fsrc id=bed_fsrc/>\n" .
+         "name=bed_fsrc id=bed_fsrc />\n" .
          '                <input type=submit value="New" ' .
-         'title="Click here to create a new file" ' .
+         'title="Click here to create a new file." ' .
          "id=bed_fnew name=bed_fnew />\n" .
          '                <input type=submit value="Save" ' .
-         'title="Click here to save all changes" ' .
+         'title="Click here to save all changes or to restore ' .
+         'an accidentally deleted file." ' .
          "id=bed_save name=bed_save />\n" .
+         '                <span id=bed_srgt title="Hover the right ' .
+         'margin to view the file in browser mode.">VIEW</span>' . "\n" .
          "            </div>\n" .
          "        </form>\n" .
          "    </body>\n" .
@@ -208,6 +229,6 @@ if (isset($_SESSION[$bed_name]) && $_SESSION[$bed_name] === $bed_auth) {
 } else {
     //** Clear session and return to login
     session_destroy();
-    header("Location: ./load.php");
+    header("Location: " . $bed_href . "#UNAUTHORISED");
     exit;
 }

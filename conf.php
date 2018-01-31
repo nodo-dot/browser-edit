@@ -49,14 +49,18 @@ $bed_auth = "BED_SESSION_AUTH";
  */
 $bed_path = $_SERVER['DOCUMENT_ROOT'];
 
+
 /**
  * Editor tree
  *
  * Top level location from where to allow editing.
  * E.g. "/foo/bar/"
  *
- * Note: While setting this to "/" may seem convenient, it will
- * of course allow editing absolutely everything on the server!
+ * While setting this to "/" may seem convenient, it will allow
+ * unrestricted editing of absolutely everything on the server!
+ *
+ * Security apart, this may also cause the script to exit prematurely
+ * trying to parse the entire tree with possibly thousands of files.
  *
  * Use with caution!
  */
@@ -73,6 +77,10 @@ $bed_tree = $bed_fold . "demo/";
 /**
  * Script version
  * Editor screen
+ * HTTP referrer
+ * Init status
  */
-$bed_make = 20180130;
+$bed_make = 20180131;
 $bed_edit = $bed_fold . "edit.php";
+$bed_href = $_SERVER['HTTP_REFERER'];
+$bed_stat = "";
