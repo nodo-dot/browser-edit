@@ -44,7 +44,7 @@ $bed_auth = "BED_SESSION_AUTH";
 /**
  * Document root
  *
- * Enter full path if SERVER returns wrong value.
+ * Enter full "path" without trailing / if SERVER returns wrong value.
  * E.g. "/home/john/htdocs"
  */
 $bed_path = $_SERVER['DOCUMENT_ROOT'];
@@ -80,7 +80,7 @@ $bed_tree = $bed_fold . "demo/";
  * HTTP referrer
  * Init status
  */
-$bed_make = 20180131;
+$bed_make = 20180202;
 $bed_edit = $bed_fold . "edit.php";
 $bed_href = $_SERVER['HTTP_REFERER'];
 $bed_stat = "";

@@ -125,7 +125,7 @@ if (isset($_SESSION[$bed_name]) && $_SESSION[$bed_name] === $bed_auth) {
     echo "<!DOCTYPE html>\n" .
          '<html lang="en-GB">' . "\n" .
          "    <head>\n" .
-         "        <title>PHP Browser Edit</title>\n" .
+         "        <title>PHP Browser Edit - $bed_fget</title>\n" .
          '        <meta charset="UTF-8"/>' . "\n" .
          '        <meta name=language content="en"/>' . "\n" .
          '        <meta name=viewport content="width=device-width, ' .
