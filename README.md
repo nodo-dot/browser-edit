@@ -12,4 +12,4 @@ Any attempt to open a location outside the scope of `$bed_tree`, e.g. by changin
 
 Hovering the left margin produces the tree list, while hovering the right margin renders a preview of the current file in browser mode. Obviously this only applies to mark-up files, like HTML or PHP. Moving the pointer out of the layer restores the editor screen.
 
-Follow this link to [try the demo](http://phclaus.com/demo/browser-edit/).
+Follow this link to [try the demo](http://phclaus.com/browser-edit/).
