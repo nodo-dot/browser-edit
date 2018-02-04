@@ -44,3 +44,5 @@ $bed_lstr['new']        = "New";
 $bed_lstr['new_text']   = "Click here to create a new file.";
 $bed_lstr['save']       = "Save";
 $bed_lstr['save_text']  = "Click here to save all changes or to restore an accidentally deleted file.";
+$bed_lstr['unid_text']  = "Click here to select day mode.";
+$bed_lstr['unin_text']  = "Click here to select night mode.";

@@ -44,3 +44,5 @@ $bed_lstr['new']        = "Neu";
 $bed_lstr['new_text']   = "Klicken Sie hier um eine neue Datei anzulegen.";
 $bed_lstr['save']       = "Sichern";
 $bed_lstr['save_text']  = "Klicken Sie hier um allen Änderungen zu speichern oder eine versehentlich gelöschte Datei wiederherzustellen.";
+$bed_lstr['unid_text']  = "Klicken Sie hier um den Tagmodus zu wählen.";
+$bed_lstr['unin_text']  = "Klicken Sie hier um den Nachtmodus zu wählen.";

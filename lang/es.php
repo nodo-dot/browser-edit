@@ -44,3 +44,5 @@ $bed_lstr['move']       = "Mover";
 $bed_lstr['move_text']  = "Haga clic aquí para mover (cambiar el nombre) del archivo.";
 $bed_lstr['save']       = "Guardar";
 $bed_lstr['save_text']  = "Haga clic aquí para guardar todos los cambios o restaurar un archivo borrado accidentalmente.";
+$bed_lstr['unid_text']  = "Haga clic aquí para seleccionar el modo de día.";
+$bed_lstr['unin_text']  = "Haga clic aquí para seleccionar el modo nocturno.";
