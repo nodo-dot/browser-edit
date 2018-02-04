@@ -80,6 +80,15 @@ $bed_lref = "en";
  */
 $bed_back = "/";
 
+
+/**
+ * Ambience mode
+ *
+ * This sets the default ambience mode to either "day" or "night".
+ */
+$bed_amod = "night";
+
+
 /**
  ***********************************************************************
  *                                                     END USER CONFIG *
@@ -92,7 +101,7 @@ $bed_back = "/";
  * Editor screen
  * Language data file
  */
-$bed_make = 20180203;
+$bed_make = 20180204;
 $bed_edit = $bed_fold . "edit.php";
 $bed_ldat = './lang/' . $bed_lref . '.php';
 

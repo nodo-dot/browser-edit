@@ -167,6 +167,15 @@ if (isset($_SESSION[$bed_name]) && $_SESSION[$bed_name] === $bed_auth) {
         exit;
     }
 
+    //** Select mode
+    if (isset($_POST['bed_mode_day'])) {
+        $_SESSION['bed_mode'] = "day";
+    } elseif (isset($_POST['bed_mode_night'])) {
+        $_SESSION['bed_mode'] = "night";
+    } else {
+        $_SESSION['bed_mode'] = $bed_amod;
+    }
+
     //** Editor screen
     echo "<!DOCTYPE html>\n" .
          '<html lang="' . $bed_lref . '">' . "\n" .
@@ -177,7 +186,9 @@ if (isset($_SESSION[$bed_name]) && $_SESSION[$bed_name] === $bed_auth) {
          'content="' . $bed_lref . '"/>' . "\n" .
          '        <meta name=viewport content="width=device-width, ' .
          'height=device-height, initial-scale=1"/>' . "\n" .
-         '        <link rel=stylesheet href="edit.css"/>' . "\n" .
+         '        <link rel=stylesheet ' .
+         'href="' . $_SESSION['bed_mode'] . '.css"/>' . "\n" .
+         '        <link rel=icon href="favicon.ico"/>' . "\n" .
          "    </head>\n" .
          "    <body>\n" .
          '        <form action="#" method=POST id=bed_form ' .
@@ -264,13 +275,22 @@ if (isset($_SESSION[$bed_name]) && $_SESSION[$bed_name] === $bed_auth) {
          '</span>' . "\n" .
          "                </div>\n" .
 
+         //** Mode
+         '                <input type=submit value="&#x1F315;" ' .
+         'id=bed_mode_day name=bed_mode_day ' .
+         'title="'. $bed_lstr['unid_text'] . '"/>' . "\n" .
+
+         '                <input type=submit value="&#x1F311;" ' .
+         'id=bed_mode_night name=bed_mode_night ' .
+         'title="'. $bed_lstr['unin_text'] . '"/>' . "\n" .
+
          //** Quit
-         '                <input type=submit value="'.
+         '                <input type=submit value="&#x2A09; '.
          $bed_lstr['quit'] .'" id=bed_quit name=bed_quit ' .
          'title="'. $bed_lstr['quit_text'] . '"/>' . "\n" .
 
          //** Delete
-         '                <input type=submit value="' .
+         '                <input type=submit value="&#x1F5D1; ' .
          $bed_lstr['del'] . '" id=bed_fdel name=bed_fdel ' .
          'title="' . $bed_lstr['del_text'] . '"/>' . "\n" .
 
@@ -280,22 +300,22 @@ if (isset($_SESSION[$bed_name]) && $_SESSION[$bed_name] === $bed_auth) {
          'title="' . $bed_lstr['file_text'] . '"/>' . "\n" .
 
          //** Copy
-         '                <input type=submit value="' .
+         '                <input type=submit value="&#x1F5D2; ' .
          $bed_lstr['copy'] . '" id=bed_fcop name=bed_fcop ' .
          'title="' . $bed_lstr['copy_text'] . '"/>' . "\n" .
 
          //** Move
-         '                <input type=submit value="' .
+         '                <input type=submit value="&#x1F503; ' .
          $bed_lstr['move'] . '" id=bed_fmov name=bed_fmov ' .
          'title="' . $bed_lstr['move_text'] . '"/>' . "\n" .
 
          //** New
-         '                <input type=submit value="' .
+         '                <input type=submit value="&#x1F58D; ' .
          $bed_lstr['new'] . '" id=bed_fnew name=bed_fnew ' .
          'title="' . $bed_lstr['new_text'] . '"/>' . "\n" .
 
          //** Save
-    '                <input type=submit value="' .
+    '                <input type=submit value="&#x1F4BE; ' .
          $bed_lstr['save'] . '" id=bed_save name=bed_save ' .
          'title="' . $bed_lstr['save_text'] . '"/>' . "\n" .
 
