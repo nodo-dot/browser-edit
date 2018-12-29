@@ -1,6 +1,8 @@
 <?php
 /**
  * PHP Version 5 and above
+ * 
+ * Configuration
  *
  * @category  PHP_Editor
  * @package   PHP_Browser_Edit
@@ -9,8 +11,6 @@
  * @license   https://www.gnu.org/licenses/gpl-3.0.en.html GPLv3
  * @version   GIT: Latest
  * @link      https://github.com/phhpro/browser-edit
- *
- * Script configuration
  */
 
 
@@ -22,71 +22,36 @@
 
 
 /**
- * Document root
- *
- * Enter full "path" without trailing / if SERVER has wrong value.
- * E.g. "/home/john/htdocs"
- */
-$bed_path = $_SERVER['DOCUMENT_ROOT'];
-
-
-/**
+ * Document root -- path without trailing / if SERVER has wrong value
  * Script folder
  * Login password
  */
+$bed_path = $_SERVER['DOCUMENT_ROOT'];
 $bed_fold = "/browser-edit/";
 $bed_pass = "edit";
 
-
-/**
- * Session name
- * Session auth
- *
- * This attempts to prevent bypassing the login screen. Even if the
- * script was tricked into thinking the session was set, it would
- * still need to match the value set here. Not perfect, but well.
- */
+//** Session tokens -- simple hack to prevent bypassing login screen
 $bed_name = "BED_SESSION_NAME";
 $bed_auth = "BED_SESSION_AUTH";
 
-
 /**
- * Editor tree
+ * Tree to allow editing
+ * Below script folder: $bed_tree = $bed_fold . "dir/";
+ * Above script folder: $bed_tree = "/dir/";
  *
- * Top level location from where to allow editing.
- * E.g. "/foo/bar/"
- *
- * Setting this to "/" enables unrestricted editing of absolutely
- * everything on the server and may well break the script trying
- * to parse the entire tree with possibly thousands of files.
- *
- * Use with caution!
+ * A value of "/" enables editing ALL files on server but
+ * may break script trying to parse thousands of files
  */
 $bed_tree = $bed_fold . "demo/";
 
-
 /**
- * Language reference
- *
- * Available language files are stored in the "lang" folder.
+ * Language -- refer to "lang" folder for available options
+ * Exit page when quitting after deleting file
+ * Initial mode -- 0 = dark, 1 = light
  */
 $bed_lref = "en";
-
-
-/**
- * Default fallback
- *
- * Return to this page when quitting the editor after deleting a file.
- */
 $bed_back = "/";
-
-
-/**
- * Ambience mode
- *
- * This sets the default ambience mode to either "day" or "night".
- */
-$bed_amod = "night";
+$bed_mode = 1;
 
 
 /**
@@ -96,18 +61,7 @@ $bed_amod = "night";
  */
 
 
-/**
- * Script version
- * Editor screen
- * Language data file
- */
-$bed_make = 20180204;
+//** Script version, editor screen, and language file
+$bed_make = "20181229";
 $bed_edit = $bed_fold . "edit.php";
-$bed_ldat = './lang/' . $bed_lref . '.php';
-
-//** Check if language data file exists
-if (!file_exists($bed_ldat)) {
-    echo "<p>Please check your language settings.</p>\n" .
-         "<p>Script halted.</p>\n";
-    exit;
-}
+$bed_ldat = "./lang/$bed_lref.php";

@@ -2,12 +2,15 @@
 
 **PHP Browser Edit** is a **free PHP editor script** to edit web pages directly from within the browser.
 
-Features are minimal, yet functional enough to get the job done. There is no extra `Save as` function because the same result can be achieved using the existing `Copy` function. Simply enter the name of the new file and press the `Copy` button. You can just as easily add a path (without leading /), e.g. foo/bar/baz.txt, to save the copy elsewhere.
+Note: This script expects the user to have a solid understanding of the sources being edited. This is not a fancy WYSIWYG toy or point-and-click thing.
 
-Accidentally deleted files can be restored by pressing the `Save` button. However, this is only possible as long as no other action has been used. Hovering the left margin produces the file tree. Hovering the right margin renders a live preview. Moving the pointer out of the area restores the normal editor screen.
+Features are minimal. There's no extra **`Save as`** because the same can be achieved with **`Copy`**. Simply enter a file name and press the appropiate button. You can add a path (without leading /), e.g. **`new/dir/file.ext`**, to save the file at a different location.
 
-Direct access to the editor without a valid file token will fail, regardless whether the password is correct. Any attempt to open a location outside the scope of `$bed_tree`, e.g. by changing the file token in the address bar, will result in the immediate termination of the session.
+Deleted files can be restored by pressing the `Save` button immediately after deleting. Hovering the left margin produces a file tree, the right margin renders a web preview. Moving the pointer out of the area restores the normal editor screen.
 
-Setting `$bed_tree` to `"/"` allows unrestricted editing of absolutely everything on the server. This may well break the script when trying to parse a tree containing thousands of files. Use with caution! The initial value defaults to the script's `demo` folder. It should go without saying that `bed_tree` ought to match the user's home directory when running the script in a multi-user environment.
+Direct access without a valid file token will fail, even if the password is correct. Any attempt to open a file outside the scope of **`$bed_tree`**, e.g. by changing the token in the address bar, immediately terminates the session.
 
-Edit `conf.php` to your likes and then navigate to `index.php` in the script folder to experiment.
+The expected syntax to pass a file to the editor is via **`load.php`**, e.g. **`load.php?/path/to/file.xyz`**. You probably want to point **`$bed_tree`** to a directory above the script folder. You can do so by setting 
+**`$bed_tree = "/dir/";`** or **`$bed_tree = "/dir1/dir2/";`**, etc.
+
+Edit **`conf.php`** to your likes and then navigate to **`index.php`** in the script folder to experiment. Once you are familiar with the script, and have set **`$bed_tree`** to point to the proper location, it's safe to delete the **`demo`** folder.

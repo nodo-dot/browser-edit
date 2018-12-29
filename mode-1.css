@@ -1,0 +1,227 @@
+@charset "UTF-8";
+
+body {
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+}
+
+#bed_form {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #999;
+    color: #333;
+}
+
+#bed_head {
+    font-size: 85%;
+    padding: 4px 26px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#bed_logo {
+    float: left;
+}
+
+#bed_stat {
+    background-color: inherit;
+    color: #000;
+}
+
+#bed_file {
+    float: right;
+    font-weight: normal;
+}
+
+.bed_dele {
+    text-decoration: line-through;
+}
+
+#bed_hvlo {
+    position: absolute;
+    top: 26px;
+    bottom: 36px;
+    left: 0;
+    margin: 0 4px;
+    padding: 0 4px;
+    font-size: 85%;
+    text-align: left;
+}
+
+#bed_hvli {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 8px 16px 0 8px;
+    overflow: auto;
+    background-color: #999;
+    color: #333;
+    z-index: -1000;
+}
+
+#bed_hvro {
+    position: absolute;
+    top: 26px;
+    right: 0;
+    bottom: 28px;
+    margin-right: 8px;
+    margin-left: 14px;
+    padding: 0 4px;
+}
+
+#bed_hvri {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin-left: -16px;
+    overflow: auto;
+    background-color: #fff;
+    color: #000;
+    z-index: -1000;
+}
+
+#bed_hvlo:hover {
+    right: 60%;
+}
+
+#bed_hvro:hover {
+    left: 26px;
+}
+
+#bed_hvlo:hover #bed_hvli,
+#bed_hvro:hover #bed_hvri {
+    z-index: 1000;
+}
+
+object {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#bed_area {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    bottom: 38px;
+    left: 16px;
+    margin: 0 4px;
+    padding: 0 4px;
+}
+
+#bed_text {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    font-size: 85%;
+    padding: 4px 8px;
+    background-color: #ccc;
+    color: #333;
+}
+
+#bed_menu {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 2px 24px;
+    font-size: 85%;
+    text-align: center;
+}
+
+input {
+    background-color: inherit;
+    color: #333;
+    border: 1px outset #ccc;
+    margin: 2px 4px;
+    padding: 2px 4px;
+    font-size: 75%;
+    font-weight: bold;
+}
+
+input:hover {
+    background-color: #ccc;
+    color: #000;
+    border: 1px inset #ccc;
+}
+
+textarea {
+    border: 1px solid #ccc;
+}
+
+li {
+    padding: 1px 2px;
+}
+
+a:link, a:visited {
+    background-color: inherit;
+    color: #333;
+    text-decoration: none;
+}
+
+a:active, a:focus, a:hover {
+    background-color: inherit;
+    color: #000;
+}
+
+#bed_fsrc {
+    font-weight: normal;
+    max-width: 100px;
+}
+
+@media screen and (max-width: 600px) {
+    #bed_head {
+        bottom: 60px;
+    }
+
+    #bed_hvlo {
+        top: 50px;
+        bottom: 62px;
+    }
+
+    #bed_area {
+        top: 48px;
+        bottom: 64px;
+    }
+
+    #bed_hvro {
+        top: 50px;
+        bottom: 54px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #bed_hvlo {
+        top: 60px;
+        bottom: 88px;
+    }
+
+    #bed_area {
+        top: 58px;
+        bottom: 90px;
+    }
+
+    #bed_hvro {
+        top: 60px;
+        bottom: 80px;
+    }
+}
